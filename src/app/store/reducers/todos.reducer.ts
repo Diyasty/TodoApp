@@ -13,7 +13,7 @@ const _todoReducer = createReducer(
           id: +state.todos.length + 1,
           title: action.title,
           description: action.description,
-          status: 'On Progress',
+          status: false,
         },
       ],
     };

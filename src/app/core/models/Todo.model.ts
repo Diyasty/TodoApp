@@ -3,6 +3,6 @@ export interface Todo {
   id?: string | number;
   title: string;
   description: string;
-  status?: string;
+  status?: boolean;
   owner?: User[];
 }

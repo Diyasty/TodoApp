@@ -13,9 +13,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of listOfData$">
-      <td>{{ data.title }}</td>
-      <td>{{ data.description }}</td>
-      <td>{{ data.status }}</td>
+      <td [ngClass]="{ complete: data.status }">{{ data.title }}</td>
+      <td [ngClass]="{ complete: data.status } >{{ data.description }}</td>
+      <td>{{ data.status ? "Complete" : "On Progress" }}</td>
       <td>
         <a (click)="showModal(data.id)"
           ><i nz-icon nzType="edit" nzTheme="fill"></i> Edit</a
@@ -60,6 +60,9 @@
             />
           </nz-input-group>
         </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <label nz-checkbox name="checkbox" [(ngModel)]="status">Complete</label>
       </nz-form-item>
     </form>
   </div>

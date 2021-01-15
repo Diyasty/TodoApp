@@ -20,13 +20,16 @@ export class TodosComponent implements OnInit {
   title: any;
   description: any;
   id!: any;
+  status!: any;
 
   constructor(private _store: Store<AppState>, private fb: FormBuilder) {
     // this._store.subscribe((d: any) => (this.listOfData = d.todos.todos));
     this._store
       .select(selectFeatureTodos)
       .pipe(take(5))
-      .subscribe((d) => (this.listOfData$ = d));
+      .subscribe((data) => {
+        this.listOfData$ = data.todos;
+      });
     // this._store
     //   .select(selectFeatureTodos)
     //   .pipe(map((x) => x.map((x: any) => (x = this.Todo))))
@@ -42,7 +45,7 @@ export class TodosComponent implements OnInit {
   }
 
   submitForm(title: string, description: string) {
-    const todo = { title, description, status: 'ON Progress' };
+    const todo = { title, description, status: false };
     console.log(todo);
     this._store.dispatch(ADD_TODO(todo));
   }
@@ -58,6 +61,7 @@ export class TodosComponent implements OnInit {
     const todo = this.listOfData$.find((x) => x.id === id);
     this.title = todo?.title;
     this.description = todo?.description;
+    this.status = todo?.status;
     this.id = id;
   }
 
@@ -68,6 +72,7 @@ export class TodosComponent implements OnInit {
       id: this.id,
       title: this.title,
       description: this.description,
+      status: this.status,
     };
     this.isOkLoading = true;
     this._store.dispatch(EDIT_TODO(todo));

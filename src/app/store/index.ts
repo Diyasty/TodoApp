@@ -11,7 +11,7 @@ export const initialState: AppState = {
       id: 1,
       title: 'test',
       description: 'test description',
-      status: 'complete',
+      status: false,
       owner: [
         {
           email: 'test@test.com',
