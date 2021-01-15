@@ -1,0 +1,66 @@
+<h1 style="margin-left: 30px">List Of Todos</h1>
+<nz-table #basicTable [nzData]="listOfData$" [nzPageSize]="3" [nzPageIndex]="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>
+        Edit <nz-divider nzType="vertical"></nz-divider>
+        Delete
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of listOfData$">
+      <td>{{ data.title }}</td>
+      <td>{{ data.description }}</td>
+      <td>{{ data.status }}</td>
+      <td>
+        <a (click)="showModal(data.id)"
+          ><i nz-icon nzType="edit" nzTheme="fill"></i> Edit</a
+        >
+        <nz-divider nzType="vertical"></nz-divider>
+        <a><i nz-icon nzType="delete" nzTheme="fill"></i> Delete </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="{{ title }}"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="isOkLoading"
+>
+  <div *nzModalContent>
+    <form nz-form WS class="login-form" #f="ngForm">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please Enter todo title">
+          <nz-input-group nzPrefixIcon="plus">
+            <input
+              type="text"
+              nz-input
+              placeholder="TITLE "
+              name="title"
+              [(ngModel)]="title"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please Enter todo description !">
+          <nz-input-group nzPrefixIcon="comment">
+            <input
+              name="description"
+              type="text"
+              nz-input
+              placeholder="DESCRIPTION"
+              [(ngModel)]="description"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</nz-modal>

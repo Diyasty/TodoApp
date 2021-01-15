@@ -1,6 +1,14 @@
-# Forentend
+# Todo App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+This project was build as practical ngrx app && ng-zorro
+
+## Tools
+
+- Angular
+- ng-zorro
+- ngrx Store
+- ngrx effects
+- ngrx entity
 
 ## Development server
 
