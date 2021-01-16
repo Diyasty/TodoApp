@@ -36,10 +36,9 @@ const _todoReducer = createReducer(
   // .filter((item, index) => {
   // return index !== itemIndex
   // })
-  on(DELETE_TODO, (state, action) => {
+  on(DELETE_TODO, (state, { id }) => {
     const updatedTodo = state.todos.filter((todo) => {
-      console.log('>>>', todo.id === action.id ? action : todo);
-      return todo.id !== action.id ? action : todo;
+      return todo.id !== id;
     });
     return {
       ...state,

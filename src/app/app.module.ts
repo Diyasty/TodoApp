@@ -36,7 +36,7 @@ registerLocaleData(en);
     NzMenuModule,
 
     SharedModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

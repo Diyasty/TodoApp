@@ -13,15 +13,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of listOfData$">
-      <td [ngClass]="{ complete: data.status }">{{ data.title }}</td>
-      <td [ngClass]="{ complete: data.status } >{{ data.description }}</td>
+      <td>{{ data.title }}</td>
+      <td>{{ data.description }}</td>
       <td>{{ data.status ? "Complete" : "On Progress" }}</td>
       <td>
         <a (click)="showModal(data.id)"
           ><i nz-icon nzType="edit" nzTheme="fill"></i> Edit</a
         >
         <nz-divider nzType="vertical"></nz-divider>
-        <a><i nz-icon nzType="delete" nzTheme="fill"></i> Delete </a>
+        <a (click)="onDelete(data.id)"
+          ><i nz-icon nzType="delete" nzTheme="fill"></i> Delete
+        </a>
       </td>
     </tr>
   </tbody>

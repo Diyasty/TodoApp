@@ -1,8 +1,9 @@
-import { createSelector } from '@ngrx/store';
+import { AppState } from 'src/app/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-export const selectFeature = (state: any) => state.todos;
+export const selectTodosFeature = createFeatureSelector<AppState>('todos');
 
 export const selectFeatureTodos = createSelector(
-  selectFeature,
-  (state) => state
+  selectTodosFeature,
+  (state) => state.todos
 );

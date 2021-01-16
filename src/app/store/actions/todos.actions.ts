@@ -9,4 +9,7 @@ export enum Actions {
 
 export const ADD_TODO = createAction(Actions.ADD_TODO, props<Todo>());
 export const EDIT_TODO = createAction(Actions.EDIT_TODO, props<Todo>());
-export const DELETE_TODO = createAction(Actions.DELETE_TODO, props<Todo>());
+export const DELETE_TODO = createAction(
+  Actions.DELETE_TODO,
+  props<{ id: any }>()
+);

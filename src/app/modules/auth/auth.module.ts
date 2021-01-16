@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { userReducer } from 'src/app/store/reducers/user.reducer';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthRoutingModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
+    StoreModule.forFeature('auth', userReducer),
     EffectsModule.forFeature([UserEffect]),
     FormsModule,
   ],

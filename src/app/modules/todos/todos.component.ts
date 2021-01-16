@@ -1,4 +1,4 @@
-import { EDIT_TODO } from './../../store/actions/todos.actions';
+import { DELETE_TODO, EDIT_TODO } from './../../store/actions/todos.actions';
 import { AppState } from './../../store/index';
 import { Store } from '@ngrx/store';
 import { Todo } from './../../core/models/Todo.model';
@@ -16,6 +16,7 @@ import { map, take } from 'rxjs/operators';
 })
 export class TodosComponent implements OnInit {
   listOfData$!: Todo[];
+
   Todo$!: Todo;
   title: any;
   description: any;
@@ -28,12 +29,8 @@ export class TodosComponent implements OnInit {
       .select(selectFeatureTodos)
       .pipe(take(5))
       .subscribe((data) => {
-        this.listOfData$ = data.todos;
+        this.listOfData$ = data;
       });
-    // this._store
-    //   .select(selectFeatureTodos)
-    //   .pipe(map((x) => x.map((x: any) => (x = this.Todo))))
-    //   .subscribe((d) => (this.Todo = d));
   }
   validateForm!: FormGroup;
 
@@ -49,13 +46,15 @@ export class TodosComponent implements OnInit {
     console.log(todo);
     this._store.dispatch(ADD_TODO(todo));
   }
-
   isVisibleTop = false;
   isVisibleMiddle = false;
 
   isVisible = false;
   isOkLoading = false;
-
+  onDelete(id: any) {
+    // const todo = this.listOfData$.filter((x) => x.id != id);
+    this._store.dispatch(DELETE_TODO({ id }));
+  }
   showModal(id: any) {
     this.isVisible = true;
     const todo = this.listOfData$.find((x) => x.id === id);
