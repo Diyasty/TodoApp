@@ -1,4 +1,8 @@
+import { selectFeatureAuth } from 'src/app/store/selecetors/auth.selector';
+import { AppState } from './../../store/index';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -6,12 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  user$ = {
-    firstName: 'Mohamed',
-    lastName: 'Eldiyasty',
-  };
+  User$!: Observable<boolean>;
   logOut() {}
-  constructor() {}
+  constructor(private store$: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.User$ = this.store$.select(selectFeatureAuth);
+  }
 }

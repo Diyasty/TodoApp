@@ -21,7 +21,7 @@
     >
       <i nz-icon nzType="user" nzTheme="outline"></i> login
     </li>
-    <div *ngIf="user$; else nouser">
+    <div *ngIf="User$ | async; else noUser">
       <div
         class="user-info"
         nz-dropdown
@@ -39,7 +39,7 @@
             nzIcon="user"
             nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           ></nz-avatar>
-          {{ user$.firstName }} {{ user$.lastName }}
+          {{ User$ | async }}
         </div>
       </div>
       <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -85,12 +85,11 @@
       </nz-dropdown-menu>
     </div>
 
-    <ng-template #nouser>
+    <ng-template #noUser>
       <div class="btns-auth-container">
         <button
           nz-button
           nzType="default"
-          [nzSize]="'large'"
           class="btn-signin"
           nzShape="round"
           [routerLink]="['/auth/login']"
@@ -100,7 +99,6 @@
         <button
           nz-button
           nzType="primary"
-          [nzSize]="'large'"
           class="btn-newaccount"
           nzShape="round"
           [routerLink]="['/auth/register']"

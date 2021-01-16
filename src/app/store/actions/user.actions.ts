@@ -2,7 +2,7 @@ import { User } from './../../core/models/user.model';
 import { createAction, props } from '@ngrx/store';
 export enum actions {
   'LOGIN_User' = '[Users Login] Start',
-  'LOGIN_Success' = "[Users Login] success'",
+  'LOGIN_Success' = '[Users Login] success',
 }
 
 export const loginAction = createAction(actions.LOGIN_User, props<User>());

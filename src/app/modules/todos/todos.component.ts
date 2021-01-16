@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ADD_TODO } from 'src/app/store/actions/todos.actions';
 import { selectFeatureTodos } from 'src/app/store/selecetors/todo.selector';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
+import { selectFeatureAuth } from 'src/app/store/selecetors/auth.selector';
 
 @Component({
   selector: 'app-todos',
@@ -16,7 +17,7 @@ import { map, take } from 'rxjs/operators';
 })
 export class TodosComponent implements OnInit {
   listOfData$!: Todo[];
-
+  User$!: Observable<boolean>;
   Todo$!: Todo;
   title: any;
   description: any;
@@ -31,6 +32,8 @@ export class TodosComponent implements OnInit {
       .subscribe((data) => {
         this.listOfData$ = data;
       });
+
+    this.User$ = this._store.select(selectFeatureAuth);
   }
   validateForm!: FormGroup;
 
